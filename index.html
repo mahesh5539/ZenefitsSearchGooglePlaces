@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>Map Places</title>
+    <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <script src="https://fb.me/react-0.14.7.js"></script>
+    <script src="https://fb.me/react-dom-0.14.7.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/babel-core/5.8.2/browser.min.js"></script>
+    <link rel="stylesheet" href="map.css">
+    <link rel="stylesheet" href="search-results.css">
+  </head>
+  <body>
+    <div id="map"></div>
+    <div id="app">
+      <!-- <div class="pull-left">
+          <div class="row">
+             <div id="input-back" class="col-md-12 search-back">
+                 <br>
+                <div class="input-group" id="adv-search">
+                   <input type="text" class="form-control search-input" placeholder="Search for places" />
+                    <div class="input-group-btn">
+                        <div class="btn-group" role="group">
+                           <div class="dropdown dropdown-lg">
+                              <button id="search" type="button" class="btn btn-default dropdown-toggle" aria-expanded="false"><span class="glyphicon glyphicon-search"></span></button>
+                              <button id="remove" type="button" class="btn btn-default"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span></button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+              </div>
+              <div class="row places">
+                <div class="col-md-12">
+                   <div class="show-results" role="menu">
+                        <form class="form-horizontal" role="form">
+                            <div class="form-group">
+                            </div>
+                        </form>
+                    </div>
+                </div>
+              </div>
+         </div>
+      </div> -->
+   </div>
+
+    <script>
+      function initMap() {
+        // Create a map object and specify the DOM element for display.
+        var map = new google.maps.Map(document.getElementById('map'), {
+          center: {lat: -34.397, lng: 150.644},
+          scrollwheel: true,
+          zoom: 8
+        });
+      }
+      //
+      // $(document).ready(function(){
+      //      $('.places').hide();
+      //       $('#remove').hide();
+      //       $('.search-input').focus();
+      //       $('#input-back').removeClass('search-back');
+      // });
+      //
+      //   $('#search').click(function(){
+      //       $('.places').show();
+      //       $('#remove').show();
+      //       $('#input-back').addClass('search-back');
+      //   });
+      //
+      //
+      //
+      //   $('#remove').click(function(){
+      //       $('.places').hide();
+      //       $('#remove').hide();
+      //       $('.search-input').focus();
+      //       $('#input-back').removeClass('search-back');
+      //   });
+
+    </script>
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBGPpsXJjKS4-ZKNKMtjzIUROJJuYmk78s&callback=initMap"
+    async defer></script>
+
+    <script type="text/babel">
+      //render a component for new a search
+      //remove a component and show other one
+      var SearchBoxComponenet = React.createClass({
+        getInitialState:function(){
+          return{
+            active:false
+          }
+        },
+        showResultsView:function(){
+
+        },
+        render:function(){
+          return(
+            <div className="pull-left">
+                <div className="row">
+                   <div id="input-back" className="col-md-12 search-back">
+                       <br/>
+                      <div className="input-group" id="adv-search">
+                         <input type="text" className="form-control search-input" placeholder="Search for places" />
+                          <div className="input-group-btn">
+                              <div className="btn-group" role="group">
+                                 <div className="dropdown dropdown-lg">
+                                    <button id="search" type="button" onClick={this.showResultsView} className="btn btn-default dropdown-toggle" aria-expanded="false"><span className="glyphicon glyphicon-search"></span></button>
+                                    <button id="remove" type="button" className="btn btn-default"><span className="glyphicon glyphicon-remove" aria-hidden="true"></span></button>
+                                  </div>
+                              </div>
+                          </div>
+                      </div>
+                    </div>
+                    <div className="row places">
+                      <div className="col-md-12">
+                         <div className="show-results" role="menu">
+                              <form className="form-horizontal" role="form">
+                                  <div className="form-group">
+                                  </div>
+                              </form>
+                          </div>
+                      </div>
+                    </div>
+               </div>
+            </div>
+          )
+        }
+      });
+      ReactDOM.render(<SearchBoxComponenet/>, document.getElementById('app'));
+    </script>
+
+
+  </body>
+</html>
